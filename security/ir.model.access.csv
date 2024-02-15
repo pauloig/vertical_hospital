@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hosp_paciente,hosp.paciente,model_hosp_paciente,,1,1,1,1
+access_hosp_tratamiento,hosp.tratamiento,model_hosp_tratamiento,,1,1,1,1

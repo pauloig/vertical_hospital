@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+        <record id="hosp_paciente_view_form" model="ir.ui.view">
+            <field name="name">Formulario Paciente</field>
+            <field name="model">hosp.paciente</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" readonly="1" required="0"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="nombre" />
+                                <field name="apellido" />
+                                <field name="dni" />
+                                <field name="estado" />                                     
+                            </group>
+                            <group name="tratamiento">
+                                <field name="tratamiento_id" options="{'no_quick_create': True, 'no_create_edit':True}"/>
+                                
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="hosp_paciente_view_tree" model="ir.ui.view">
+            <field name="name">Lista de Pacientes</field>
+            <field name="model">hosp.paciente</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name" string="Secuencia"/>
+                    <field name="nombre" />
+                    <field name="apellido" />
+                    <field name="dni" />
+                    <field name="estado" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_paciente" model="ir.actions.act_window">
+            <field name="name">Pacientes</field>
+            <field name="res_model">hosp.paciente</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Crea nuevo Registro
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="root_pacientes"
+            name="Pacientes"
+            web_icon="vertical_hospital,static/description/icon.png"
+            sequence="1"/>
+
+       
+       <menuitem 
+        id="menu_paciente" 
+        parent="root_pacientes" 
+        action="action_view_paciente"
+        sequence="1"/>  
+
+
+        <record id="hosp_tratamiento_view_form" model="ir.ui.view">
+            <field name="name">Formulario de Tratamientos</field>
+            <field name="model">hosp.tratamiento</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="codigo_tratamiento" />
+                            <field name="nombre_tratamiento" />
+                            <field name="medico_tratante" />
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>                
+            </field>
+        </record>
+
+        <record id="hosp_tratamiento_view_tree" model="ir.ui.view">
+            <field name="name">Lista de Tratamientos</field>
+            <field name="model">hosp.tratamiento</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="codigo_tratamiento" />
+                    <field name="nombre_tratamiento" />
+                    <field name="medico_tratante" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="hosp_tratamiento_action" model="ir.actions.act_window">
+            <field name="name">Tratamientos</field>
+            <field name="res_model">hosp.tratamiento</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                 <p class="oe_view_nocontent_create">
+                    Crea nuevo Registro
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+            id="tratamiento_menu"            
+            action="hosp_tratamiento_action"            
+            parent="root_pacientes"
+            sequence="2"/>
+    </data>
+</odoo>
